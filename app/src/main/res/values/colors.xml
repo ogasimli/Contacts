@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_grey">#e0e0e0</color>
+
+    <!-- Material color palette -->
+    <color name="color_primary">#4CAF50</color>
+    <color name="color_primary_dark">#388E3C</color>
+    <color name="color_accent">#FF9800</color>
+    <color name="color_secondary_text">#9E9E9E</color>
+
+</resources>

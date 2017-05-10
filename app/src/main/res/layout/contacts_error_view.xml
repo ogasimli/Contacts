@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/error_image_width"
+        android:layout_height="@dimen/error_image_height"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:contentDescription="@string/no_contacts_image_description"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_dissatisfied"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_padding"
+        android:text="@string/contacts_error_message"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/color_secondary_text"/>
+
+    <Button
+        android:id="@+id/reload_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_view_click_to_reload_text"
+        android:padding="@dimen/activity_horizontal_padding"
+        android:layout_margin="@dimen/activity_vertical_padding"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        style="?attr/borderlessButtonStyle"
+        android:textColor="@color/color_primary"
+        android:background="?selectableItemBackground"/>
+
+</LinearLayout>

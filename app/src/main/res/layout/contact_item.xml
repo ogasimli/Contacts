@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contact_card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    app:cardCornerRadius="@dimen/card_view_corner_radius"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="3dp"
+    android:padding="16dp"
+    app:cardUseCompatPadding="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/avatar_image"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/user_avatar_description"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_face_male"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/contact_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            tools:text="Ravi Tamada"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/contact_mobile_number_static_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            android:text="@string/mobile_number_static_text"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_name_textview"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/contact_mobile_number_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            tools:text="+91 0000000000"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_name_textview"
+            app:layout_constraintLeft_toRightOf="@+id/contact_mobile_number_static_textview"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"/>
+
+        <TextView
+            android:id="@+id/contact_home_number_static_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            android:text="@string/home_number_static_text"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_mobile_number_static_textview"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/contact_home_number_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            tools:text="00 000000"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_mobile_number_textview"
+            app:layout_constraintLeft_toRightOf="@+id/contact_home_number_static_textview"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"/>
+
+        <TextView
+            android:id="@+id/contact_office_number_static_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            android:text="@string/office_number_static_text"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_home_number_textview"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/contact_office_number_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            tools:text="00 000000"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_home_number_textview"
+            app:layout_constraintLeft_toRightOf="@+id/contact_office_number_static_textview"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"/>
+
+        <TextView
+            android:id="@+id/contact_email_static_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            android:text="@string/email_static_text"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_office_number_static_textview"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/contact_email_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            tools:text="ravi@gmail.com"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_office_number_textview"
+            app:layout_constraintLeft_toRightOf="@+id/contact_email_static_textview"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"/>
+
+        <TextView
+            android:id="@+id/contact_address_static_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            android:text="@string/address_static_text"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_email_static_textview"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/contact_address_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_secondary_text"
+            tools:text="xx-xx-xxxx,x - street, x - country"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/contact_email_textview"
+            app:layout_constraintLeft_toRightOf="@+id/contact_address_static_textview"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/favourite_button"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/ic_star_empty_green"
+            android:background="?selectableItemBackground"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintRight_toLeftOf="@+id/divider_line"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+
+        <View
+            android:id="@+id/divider_line"
+            android:layout_height="38dp"
+            android:layout_width="1dp"
+            android:background="@color/color_secondary_text"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/call_button"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/call_button"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/ic_phone"
+            android:background="?selectableItemBackground"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
