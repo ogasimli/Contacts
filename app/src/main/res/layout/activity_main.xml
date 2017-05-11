@@ -30,7 +30,8 @@
             app:tabSelectedTextColor="@color/color_white"
             app:tabIndicatorHeight="@dimen/tab_indicator_height"
             app:tabMode="fixed"
-            app:tabGravity="fill"/>
+            app:tabGravity="fill"
+            app:tabMaxWidth="@dimen/tab_max_width"/>
 
     </android.support.design.widget.AppBarLayout>
 
