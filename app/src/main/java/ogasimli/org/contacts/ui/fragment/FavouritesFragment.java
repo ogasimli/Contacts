@@ -101,13 +101,6 @@ public class FavouritesFragment extends Fragment
         outState.putParcelableArrayList(Constants.FAVOURITES_LIST_STATE_KEY, mFavouriteList);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        mUnbinder.unbind();
-    }
-
     /**
      * Helper method to restore instance state
      */
