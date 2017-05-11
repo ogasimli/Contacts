@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="card_view_corner_radius">9dp</dimen>
+
+    <!-- activity_main dimens -->
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="error_image_width">150dp</dimen>
-    <dimen name="error_image_height">150dp</dimen>
     <dimen name="activity_horizontal_padding">24dp</dimen>
     <dimen name="activity_vertical_padding">16dp</dimen>
     <dimen name="tab_indicator_height">4dp</dimen>
+
+    <!-- Error image dimens -->
+    <dimen name="error_image_width">150dp</dimen>
+    <dimen name="error_image_height">150dp</dimen>
+
+    <!-- contact_item dimens -->
     <dimen name="card_view_padding">16dp</dimen>
+    <dimen name="card_view_elevation">3dp</dimen>
+    <dimen name="card_view_corner_radius">9dp</dimen>
+    <dimen name="card_view_min_height">80dp</dimen>
     <dimen name="contact_item_layout_margin">8dp</dimen>
     <dimen name="contact_item_image_height">38dp</dimen>
     <dimen name="contact_item_image_width">38dp</dimen>
     <dimen name="contact_item_default_dimen">8dp</dimen>
     <dimen name="contact_item_static_textview_margin">2dp</dimen>
     <dimen name="contact_item_divider_margin">4dp</dimen>
+
+    <!-- splash_activity dimens  -->
     <dimen name="splash_screen_caption_text_size">24sp</dimen>
     <dimen name="splash_screen_text_top_margin">100dp</dimen>
     <dimen name="splash_screen_icon_width">80dp</dimen>
     <dimen name="splash_screen_icon_height">80dp</dimen>
+
 </resources>

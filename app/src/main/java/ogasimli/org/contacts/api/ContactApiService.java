@@ -1,5 +1,6 @@
 package ogasimli.org.contacts.api;
 
+import ogasimli.org.contacts.helper.Constants;
 import ogasimli.org.contacts.object.ContactList;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -16,7 +17,7 @@ public interface ContactApiService {
     Call<ContactList> getContactList();
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://api.androidhive.info/")
+            .baseUrl(Constants.CONTACTS_API_BASE_LINK)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

@@ -25,6 +25,9 @@ public class Constants {
     public static final String DB_AUTHORITY = "content://org.ogasimli.contacts/";
     public static final int FAVOURITES_LOADER_ID = 0;
 
-    /** Duration of splash screen **/
+    //API link
+    public static final String CONTACTS_API_BASE_LINK = "http://api.androidhive.info/";
+
+    //Duration of splash screen
     public static final int SPLASH_DISPLAY_LENGTH = 1000;
 }
