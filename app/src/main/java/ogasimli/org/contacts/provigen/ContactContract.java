@@ -8,6 +8,8 @@ import android.net.Uri;
 import ogasimli.org.contacts.helper.Constants;
 
 /**
+ * Contact table contract interface
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

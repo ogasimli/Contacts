@@ -1,6 +1,8 @@
 package ogasimli.org.contacts.helper;
 
 /**
+ * Helper class to hold constants
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

@@ -6,6 +6,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * Class for holding PhoneNumber object
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

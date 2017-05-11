@@ -9,6 +9,8 @@ import ogasimli.org.contacts.R;
 import ogasimli.org.contacts.helper.Constants;
 
 /**
+ * Splash screen class
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

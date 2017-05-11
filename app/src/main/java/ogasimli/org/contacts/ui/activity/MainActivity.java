@@ -14,6 +14,8 @@ import ogasimli.org.contacts.ui.fragment.ContactsFragment;
 import ogasimli.org.contacts.ui.fragment.FavouritesFragment;
 
 /**
+ * MainActivity class
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

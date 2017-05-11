@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * FragmentPagerAdapter class
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

@@ -4,6 +4,8 @@ import ogasimli.org.contacts.R;
 import ogasimli.org.contacts.ui.fragment.FavouritesFragment;
 
 /**
+ * Helper class for holding methods
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

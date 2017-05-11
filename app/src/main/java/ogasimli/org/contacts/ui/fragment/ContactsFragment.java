@@ -36,6 +36,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * ContactsFragment class
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

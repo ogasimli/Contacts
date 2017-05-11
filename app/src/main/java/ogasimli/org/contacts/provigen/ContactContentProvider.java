@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import ogasimli.org.contacts.helper.Constants;
 
 /**
+ * Content provider class
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

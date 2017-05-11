@@ -8,6 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 /**
+ * Retrofit API service interface
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

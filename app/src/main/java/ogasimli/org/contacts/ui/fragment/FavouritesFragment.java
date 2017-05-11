@@ -29,6 +29,8 @@ import ogasimli.org.contacts.object.Contact;
 import ogasimli.org.contacts.ui.adapter.ContactListAdapter;
 
 /**
+ * FavouritesFragment class
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 public class FavouritesFragment extends Fragment

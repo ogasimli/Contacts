@@ -20,6 +20,8 @@ import ogasimli.org.contacts.helper.Utilities;
 import ogasimli.org.contacts.object.Contact;
 
 /**
+ * RecyclerViewAdapter for contact lists
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

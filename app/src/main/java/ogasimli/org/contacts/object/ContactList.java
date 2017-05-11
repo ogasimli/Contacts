@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
+ * Class for holding list of Contact objects
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

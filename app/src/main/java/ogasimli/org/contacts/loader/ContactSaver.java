@@ -11,6 +11,8 @@ import ogasimli.org.contacts.object.PhoneNumber;
 import ogasimli.org.contacts.provigen.ContactContract;
 
 /**
+ * Async task loader to save favourite contracts
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 

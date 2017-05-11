@@ -9,6 +9,8 @@ import ogasimli.org.contacts.object.Contact;
 import ogasimli.org.contacts.provigen.ContactContract;
 
 /**
+ * Async task loader to remove favourite contacts
+ *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 
