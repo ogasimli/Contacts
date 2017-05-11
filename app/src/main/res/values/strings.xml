@@ -1,11 +1,5 @@
 <resources>
     <string name="app_name">Contacts</string>
-
-    <!-- Tab names -->
-    <string name="first_tab_name">Contacts</string>
-    <string name="second_tab_name">Favourites</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="no_favourite_image_description">No favourites image</string>
     <string name="no_favourite_message">No contact in your favourites list</string>
     <string name="user_avatar_description">User avatar</string>

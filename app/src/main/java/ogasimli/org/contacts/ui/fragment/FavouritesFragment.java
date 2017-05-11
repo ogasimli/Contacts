@@ -1,6 +1,5 @@
 package ogasimli.org.contacts.ui.fragment;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,8 +40,6 @@ public class FavouritesFragment extends Fragment
 
     private ArrayList<Contact> mFavouriteList;
 
-    private ProgressDialog mFavouriteProgressDialog;
-
     private Unbinder mUnbinder;
 
     @BindView(R.id.favourite_fragment_relative_layout)
@@ -71,10 +68,8 @@ public class FavouritesFragment extends Fragment
         mRecyclerView.setLayoutManager(mLayoutManager);
         mFavouriteListAdapter.setOnItemClickListener(itemClickListener);
 
-        /**
-        * loadData if savedInstanceState is null, load from already fetched data
-        * if savedInstanceSate is not null
-        */
+        /* loadData if savedInstanceState is null, load from already fetched data if
+         * savedInstanceSate is not null */
         if (savedInstanceState == null || !savedInstanceState.containsKey(Constants.FAVOURITES_LIST_STATE_KEY)
                 || !savedInstanceState.containsKey(Constants.FAVOURITES_VIEW_STATE_KEY)) {
             loadData();
@@ -86,8 +81,9 @@ public class FavouritesFragment extends Fragment
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
     }
 
     @Override
@@ -108,10 +104,6 @@ public class FavouritesFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
-        if (mFavouriteProgressDialog != null && mFavouriteProgressDialog.isShowing()) {
-            mFavouriteProgressDialog.dismiss();
-        }
 
         mUnbinder.unbind();
     }
@@ -141,8 +133,7 @@ public class FavouritesFragment extends Fragment
     /**
      * Helper method to load contacts
      */
-    public void loadData() {
-        showProgressDialog(true);
+    private void loadData() {
         //Load corresponding entries from DB
         getActivity().getSupportLoaderManager()
                 .restartLoader(Constants.FAVOURITES_LOADER_ID, null, this);
@@ -163,9 +154,6 @@ public class FavouritesFragment extends Fragment
 
         //Set adapter to RecyclerView
         mFavouriteListAdapter.setContactList(mFavouriteList);
-
-        //Hide ProgressDialog
-        showProgressDialog(false);
     }
 
     /**
@@ -179,24 +167,6 @@ public class FavouritesFragment extends Fragment
         }
         if (mNoContactsView != null) {
             mNoContactsView.setVisibility(View.VISIBLE);
-        }
-
-        //Hide ProgressDialog
-        showProgressDialog(false);
-    }
-
-    /*
-    * Helper method to show and hide ProgressDialog
-    */
-    private void showProgressDialog(boolean show) {
-        if (show && (mFavouriteProgressDialog == null || !mFavouriteProgressDialog.isShowing())) {
-            mFavouriteProgressDialog = ProgressDialog.show(getActivity(),
-                    getActivity().getString(R.string.progress_dialog_title),
-                    getActivity().getString(R.string.progress_dialog_content), true, false);
-        } else {
-            if (mFavouriteProgressDialog != null && mFavouriteProgressDialog.isShowing()) {
-                mFavouriteProgressDialog.dismiss();
-            }
         }
     }
 

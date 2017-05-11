@@ -27,6 +27,7 @@ public class Contact implements Parcelable {
     private String gender;
 
     @SerializedName("phone")
+    private
     PhoneNumber phone;
 
     public Contact() {
@@ -94,7 +95,7 @@ public class Contact implements Parcelable {
         dest.writeString(this.gender);
     }
 
-    protected Contact(Parcel in) {
+    private Contact(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.email = in.readString();

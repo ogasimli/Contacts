@@ -15,7 +15,7 @@ public interface ContactApiService {
     @GET("contacts/")
     Call<ContactList> getContactList();
 
-    public static final Retrofit retrofit = new Retrofit.Builder()
+    Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://api.androidhive.info/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();

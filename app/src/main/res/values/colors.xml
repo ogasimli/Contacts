@@ -2,7 +2,6 @@
 <resources>
 
     <color name="color_white">#FFFFFF</color>
-    <color name="color_grey">#e0e0e0</color>
 
     <!-- Material color palette -->
     <color name="color_primary">#4CAF50</color>

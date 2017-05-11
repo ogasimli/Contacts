@@ -5,6 +5,13 @@
     <dimen name="error_image_width">150dp</dimen>
     <dimen name="error_image_height">150dp</dimen>
     <dimen name="activity_horizontal_padding">24dp</dimen>
-    <dimen name="circle_user_background_corner_radius">16dp</dimen>
     <dimen name="activity_vertical_padding">16dp</dimen>
+    <dimen name="tab_indicator_height">4dp</dimen>
+    <dimen name="card_view_padding">16dp</dimen>
+    <dimen name="contact_item_layout_margin">8dp</dimen>
+    <dimen name="contact_item_image_height">38dp</dimen>
+    <dimen name="contact_item_image_width">38dp</dimen>
+    <dimen name="contact_item_default_dimen">8dp</dimen>
+    <dimen name="contact_item_static_textview_margin">2dp</dimen>
+    <dimen name="contact_item_divider_margin">4dp</dimen>
 </resources>

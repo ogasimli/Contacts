@@ -60,7 +60,7 @@ public class PhoneNumber implements Parcelable {
         dest.writeString(this.office);
     }
 
-    protected PhoneNumber(Parcel in) {
+    private PhoneNumber(Parcel in) {
         this.mobile = in.readString();
         this.home = in.readString();
         this.office = in.readString();
