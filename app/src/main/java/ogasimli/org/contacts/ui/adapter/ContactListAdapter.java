@@ -24,7 +24,7 @@ import ogasimli.org.contacts.object.Contact;
  *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
-
+//TODO: Merge fragments using abstract fragment class
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
 
     private ClickListener mClickListener;

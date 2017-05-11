@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity
         mFavouritesFragment = new FavouritesFragment();
         adapter.addFrag(new ContactsFragment());
         adapter.addFrag(mFavouritesFragment);
-        viewPager.setOffscreenPageLimit(0);
         viewPager.setAdapter(adapter);
     }
 

@@ -32,4 +32,5 @@ public class Constants {
 
     //Duration of splash screen
     public static final int SPLASH_DISPLAY_LENGTH = 1000;
+    public static final int MY_PERMISSIONS_REQUEST_CALL = 1986;
 }

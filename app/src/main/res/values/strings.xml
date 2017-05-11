@@ -30,6 +30,11 @@
     <!-- Snackbar texts -->
     <string name="added_to_favorites_snackbar">Contact added to favorites</string>
     <string name="undo_message_snackbar">Undo</string>
-    <string name="removed_from_favourites">Contact removed from favourites</string>
+    <string name="removed_from_favourites_snackbar">Contact removed from favourites</string>
+
+    <!-- Permission rationale message -->
+    <string name="permission_rationale_message">You need to allow access to your phone in order to
+        be able to call.
+    </string>
 
 </resources>
