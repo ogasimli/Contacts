@@ -26,7 +26,7 @@ import ogasimli.org.contacts.helper.Constants;
 import ogasimli.org.contacts.loader.ContactLoader;
 import ogasimli.org.contacts.loader.ContactRemover;
 import ogasimli.org.contacts.object.Contact;
-import ogasimli.org.contacts.ui.adapter.FavouriteListAdapter;
+import ogasimli.org.contacts.ui.adapter.ContactListAdapter;
 
 /**
  * Created by Orkhan Gasimli on 10.05.2017.
@@ -36,7 +36,7 @@ public class FavouritesFragment extends Fragment
 
     private final String LOG_TAG = FavouritesFragment.class.getSimpleName();
 
-    private FavouriteListAdapter mFavouriteListAdapter;
+    private ContactListAdapter mFavouriteListAdapter;
 
     private ArrayList<Contact> mFavouriteList;
 
@@ -58,7 +58,7 @@ public class FavouritesFragment extends Fragment
         mUnbinder = ButterKnife.bind(this, rootView);
 
         //Instantiate RecyclerView adapter
-        mFavouriteListAdapter = new FavouriteListAdapter();
+        mFavouriteListAdapter = new ContactListAdapter(LOG_TAG);
 
         //Instantiate RecyclerView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -120,6 +120,14 @@ public class FavouritesFragment extends Fragment
                     loadData();
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            loadData();
         }
     }
 
@@ -187,8 +195,8 @@ public class FavouritesFragment extends Fragment
     }
 
     /* ItemClickListener for contact list items */
-    private final FavouriteListAdapter.ClickListener itemClickListener
-            = new FavouriteListAdapter.ClickListener() {
+    private final ContactListAdapter.ClickListener itemClickListener
+            = new ContactListAdapter.ClickListener() {
         @Override
         public void onItemClick(final int position, View v) {
             switch (v.getId()) {

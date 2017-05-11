@@ -25,11 +25,14 @@ import ogasimli.org.contacts.object.Contact;
 
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
 
-    private static ClickListener mClickListener;
+    private ClickListener mClickListener;
 
     private ArrayList<Contact> mContactList;
 
-    public ContactListAdapter() {
+    private String mFragmentName;
+
+    public ContactListAdapter(String fragmentName) {
+        this.mFragmentName = fragmentName;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         holder.mOffice.setText(contact.getPhone().getOffice());
         holder.mEmail.setText(contact.getEmail());
         holder.mAddress.setText(contact.getAddress());
-        holder.mFavouriteButton.setImageResource(R.drawable.ic_star_empty_green);
+        holder.mFavouriteButton.setImageResource(Utilities.setFavouriteImage(mFragmentName));
         holder.mAvatarImage.setImageResource(Utilities.setAvatar(contact.getGender()));
     }
 

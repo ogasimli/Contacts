@@ -80,7 +80,7 @@ public class ContactsFragment extends Fragment {
         mUnbinder = ButterKnife.bind(this, rootView);
 
         //Instantiate RecyclerView adapter
-        mContactListAdapter = new ContactListAdapter();
+        mContactListAdapter = new ContactListAdapter(LOG_TAG);
 
         //Instantiate RecyclerView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
