@@ -43,8 +43,6 @@ public class ContactsFragment extends BaseFragment {
 
     private ProgressDialog mContactProgressDialog;
 
-    private ContactActionListener mContactActionListener;
-
     @BindView(R.id.contact_fragment_relative_layout)
     RelativeLayout mRelativeLayout;
 
@@ -60,9 +58,6 @@ public class ContactsFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof ContactActionListener) {
-            mContactActionListener = (ContactActionListener) context;
-        }
         fragmentName = LOG_TAG;
     }
 
@@ -273,21 +268,10 @@ public class ContactsFragment extends BaseFragment {
                                 @Override
                                 public void onClick(View v) {
                                     new ContactRemover(getActivity(), mContactList.get(position)).execute();
-                                    if (mContactActionListener != null) {
-                                        mContactActionListener.onFavoriteChanged();
-                                    }
                                 }
                             }).show();
-                    if (mContactActionListener != null) {
-                        mContactActionListener.onFavoriteChanged();
-                    }
                     break;
             }
         }
     };
-
-    /*Action listener that notifies if the favorite contact is changed*/
-    public interface ContactActionListener {
-        void onFavoriteChanged();
-    }
 }

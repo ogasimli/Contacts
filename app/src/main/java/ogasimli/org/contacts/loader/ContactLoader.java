@@ -19,6 +19,8 @@ import ogasimli.org.contacts.provigen.ContactContract;
 
 public class ContactLoader extends AsyncTaskLoader<ArrayList<Contact>> {
 
+    private ArrayList<Contact> mFavouriteList = null;
+
     public ContactLoader(Context context) {
         super(context);
     }
@@ -26,12 +28,16 @@ public class ContactLoader extends AsyncTaskLoader<ArrayList<Contact>> {
     @Override
     protected void onStartLoading() {
         super.onStartLoading();
-        forceLoad();
+        if (mFavouriteList == null) {
+            forceLoad();
+        } else {
+            deliverResult(mFavouriteList);
+        }
     }
 
     @Override
     public ArrayList<Contact> loadInBackground() {
-        ArrayList<Contact> favouriteList = new ArrayList<>();
+        mFavouriteList = new ArrayList<>();
         Uri uri = ContactContract.CONTENT_URI;
         Cursor cursor = getContext().getContentResolver().
                 query(uri, null, null, null, "");
@@ -61,11 +67,11 @@ public class ContactLoader extends AsyncTaskLoader<ArrayList<Contact>> {
                 contact.setEmail(cursor.getString(email));
                 contact.setAddress(cursor.getString(address));
                 contact.setGender(cursor.getString(gender));
-                favouriteList.add(contact);
+                mFavouriteList.add(contact);
             }
         }
         cursor.close();
-        return favouriteList;
+        return mFavouriteList;
     }
 
     @Override

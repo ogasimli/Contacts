@@ -19,10 +19,7 @@ import ogasimli.org.contacts.ui.fragment.FavouritesFragment;
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 
-public class MainActivity extends AppCompatActivity
-        implements ContactsFragment.ContactActionListener{
-
-    private FavouritesFragment mFavouritesFragment;
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbarView;
@@ -48,9 +45,8 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         ContactsFragmentPagerAdapter adapter = new ContactsFragmentPagerAdapter(getSupportFragmentManager());
-        mFavouritesFragment = new FavouritesFragment();
         adapter.addFrag(new ContactsFragment());
-        adapter.addFrag(mFavouritesFragment);
+        adapter.addFrag(new FavouritesFragment());
         viewPager.setAdapter(adapter);
     }
 
@@ -60,8 +56,8 @@ public class MainActivity extends AppCompatActivity
         mTabs.getTabAt(1).setIcon(R.drawable.ic_star_filled);
     }
 
-    @Override
+/*    @Override
     public void onFavoriteChanged() {
         mFavouritesFragment.favoriteChanged();
-    }
+    }*/
 }

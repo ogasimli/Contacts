@@ -1,10 +1,14 @@
 package ogasimli.org.contacts.ui.fragment;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +36,8 @@ public class FavouritesFragment extends BaseFragment
         implements LoaderManager.LoaderCallbacks<ArrayList<Contact>> {
 
     private final String LOG_TAG = FavouritesFragment.class.getSimpleName();
+
+    private BroadcastReceiver mBroadcastReceiver;
 
     private ArrayList<Contact> mFavouriteList;
 
@@ -70,7 +76,22 @@ public class FavouritesFragment extends BaseFragment
             restoreInstanceState(savedInstanceState);
         }
 
+        //Register broadcast receiver
+        registerReceiver();
+
         return rootView;
+    }
+
+    private void registerReceiver() {
+        mBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                loadData();
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Constants.BROADCAST_UPDATE_MESSAGE);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mBroadcastReceiver, intentFilter);
     }
 
     @Override
@@ -86,6 +107,12 @@ public class FavouritesFragment extends BaseFragment
 
         outState.putInt(Constants.FAVOURITES_VIEW_STATE_KEY, state);
         outState.putParcelableArrayList(Constants.FAVOURITES_LIST_STATE_KEY, mFavouriteList);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mBroadcastReceiver);
     }
 
     /**
@@ -107,14 +134,6 @@ public class FavouritesFragment extends BaseFragment
                     loadData();
                 }
                 break;
-        }
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            loadData();
         }
     }
 
@@ -208,8 +227,4 @@ public class FavouritesFragment extends BaseFragment
             }
         }
     };
-
-    public void favoriteChanged() {
-        loadData();
-    }
 }
