@@ -1,33 +1,21 @@
 package ogasimli.org.contacts.ui.fragment;
 
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import ogasimli.org.contacts.R;
 import ogasimli.org.contacts.helper.Constants;
 import ogasimli.org.contacts.loader.ContactLoader;
@@ -40,43 +28,38 @@ import ogasimli.org.contacts.ui.adapter.ContactListAdapter;
  *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
-public class FavouritesFragment extends Fragment
+public class FavouritesFragment extends BaseFragment
         implements LoaderManager.LoaderCallbacks<ArrayList<Contact>> {
 
     private final String LOG_TAG = FavouritesFragment.class.getSimpleName();
 
-    private ContactListAdapter mFavouriteListAdapter;
-
     private ArrayList<Contact> mFavouriteList;
-
-    private Unbinder mUnbinder;
-
-    private String mMobileNumber;
 
     @BindView(R.id.favourite_fragment_relative_layout)
     RelativeLayout mRelativeLayout;
 
     @BindView(R.id.recyclerview_favourite)
     RecyclerView mRecyclerView;
+
     @BindView(R.id.no_favourite_view)
     View mNoContactsView;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentName = LOG_TAG;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_favourites, container, false);
-        mUnbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
 
         //Instantiate RecyclerView adapter
-        mFavouriteListAdapter = new ContactListAdapter(LOG_TAG);
-
-        //Instantiate RecyclerView
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mFavouriteListAdapter);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mFavouriteListAdapter.setOnItemClickListener(itemClickListener);
+        mContactListAdapter = new ContactListAdapter(fragmentName);
+        mRecyclerView.setAdapter(mContactListAdapter);
+        mContactListAdapter.setOnItemClickListener(itemClickListener);
 
         /* loadData if savedInstanceState is null, load from already fetched data if
          * savedInstanceSate is not null */
@@ -88,12 +71,6 @@ public class FavouritesFragment extends Fragment
         }
 
         return rootView;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mUnbinder.unbind();
     }
 
     @Override
@@ -166,7 +143,7 @@ public class FavouritesFragment extends Fragment
         }
 
         //Set adapter to RecyclerView
-        mFavouriteListAdapter.setContactList(mFavouriteList);
+        mContactListAdapter.setContactList(mFavouriteList);
     }
 
     /**
@@ -213,7 +190,7 @@ public class FavouritesFragment extends Fragment
         public void onItemClick(final int position, View v) {
             switch (v.getId()) {
                 case R.id.call_button:
-                    mMobileNumber = mFavouriteList.get(position).getPhone().getMobile();
+                    mobileNumber = mFavouriteList.get(position).getPhone().getMobile();
                     askForPermission();
                     break;
                 case R.id.favourite_button:
@@ -234,64 +211,5 @@ public class FavouritesFragment extends Fragment
 
     public void favoriteChanged() {
         loadData();
-    }
-
-    public void askForPermission() {
-        final String permission = Manifest.permission.CALL_PHONE;
-        final int permissionCode = Constants.MY_PERMISSIONS_REQUEST_CALL;
-        int hasWriteContactsPermission = ContextCompat.checkSelfPermission(getActivity(), permission);
-        if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
-            if (shouldShowRequestPermissionRationale(permission)) {
-                showRationaleDialog(getString(R.string.permission_rationale_message),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                requestPermissions(new String[]{permission}, permissionCode);
-                            }
-                        });
-                return;
-            }
-            requestPermissions(new String[]{permission}, permissionCode);
-            return;
-        }
-        startCallIntent();
-    }
-
-    private void showRationaleDialog(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(getActivity())
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, okListener)
-                .setNegativeButton(android.R.string.cancel, null)
-                .create()
-                .show();
-    }
-
-    public void startCallIntent() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_DIAL);
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            getActivity().startActivity(new Intent(Intent.ACTION_DIAL,
-                    Uri.fromParts("tel", mMobileNumber, null)));
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case Constants.MY_PERMISSIONS_REQUEST_CALL:
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //Permission granted
-                    startCallIntent();
-                } else {
-                    // Permission Denied
-                    Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
 }

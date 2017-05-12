@@ -1,20 +1,9 @@
 package ogasimli.org.contacts.ui.fragment;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,14 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import ogasimli.org.contacts.R;
 import ogasimli.org.contacts.api.ContactApiService;
 import ogasimli.org.contacts.helper.Constants;
@@ -48,21 +35,15 @@ import retrofit2.Response;
  * Created by Orkhan Gasimli on 10.05.2017.
  */
 
-public class ContactsFragment extends Fragment {
+public class ContactsFragment extends BaseFragment {
 
     private final String LOG_TAG = ContactsFragment.class.getSimpleName();
-
-    private ContactListAdapter mContactListAdapter;
 
     private ArrayList<Contact> mContactList;
 
     private ProgressDialog mContactProgressDialog;
 
-    private Unbinder mUnbinder;
-
     private ContactActionListener mContactActionListener;
-
-    private String mMobileNumber;
 
     @BindView(R.id.contact_fragment_relative_layout)
     RelativeLayout mRelativeLayout;
@@ -82,23 +63,18 @@ public class ContactsFragment extends Fragment {
         if (context instanceof ContactActionListener) {
             mContactActionListener = (ContactActionListener) context;
         }
+        fragmentName = LOG_TAG;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_contacts, container, false);
-        mUnbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
 
         //Instantiate RecyclerView adapter
-        mContactListAdapter = new ContactListAdapter(LOG_TAG);
-
-        //Instantiate RecyclerView
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mContactListAdapter = new ContactListAdapter(fragmentName);
         mRecyclerView.setAdapter(mContactListAdapter);
-        mRecyclerView.setLayoutManager(mLayoutManager);
         mContactListAdapter.setOnItemClickListener(itemClickListener);
 
         /*
@@ -139,8 +115,6 @@ public class ContactsFragment extends Fragment {
         if (mContactProgressDialog != null && mContactProgressDialog.isShowing()) {
             mContactProgressDialog.dismiss();
         }
-
-        mUnbinder.unbind();
     }
 
     /**
@@ -288,7 +262,7 @@ public class ContactsFragment extends Fragment {
         public void onItemClick(final int position, View v) {
             switch (v.getId()) {
                 case R.id.call_button:
-                    mMobileNumber = mContactList.get(position).getPhone().getMobile();
+                    mobileNumber = mContactList.get(position).getPhone().getMobile();
                     askForPermission();
                     break;
                 case R.id.favourite_button:
@@ -315,64 +289,5 @@ public class ContactsFragment extends Fragment {
     /*Action listener that notifies if the favorite contact is changed*/
     public interface ContactActionListener {
         void onFavoriteChanged();
-    }
-
-    public void askForPermission() {
-        final String permission = Manifest.permission.CALL_PHONE;
-        final int permissionCode = Constants.MY_PERMISSIONS_REQUEST_CALL;
-        int hasWriteContactsPermission = ContextCompat.checkSelfPermission(getActivity(), permission);
-        if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
-            if (shouldShowRequestPermissionRationale(permission)) {
-                showRationaleDialog(getString(R.string.permission_rationale_message),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                requestPermissions(new String[]{permission}, permissionCode);
-                            }
-                        });
-                return;
-            }
-            requestPermissions(new String[]{permission}, permissionCode);
-            return;
-        }
-        startCallIntent();
-    }
-
-    private void showRationaleDialog(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(getActivity())
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, okListener)
-                .setNegativeButton(android.R.string.cancel, null)
-                .create()
-                .show();
-    }
-
-    public void startCallIntent() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_DIAL);
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            getActivity().startActivity(new Intent(Intent.ACTION_DIAL,
-                    Uri.fromParts("tel", mMobileNumber, null)));
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case Constants.MY_PERMISSIONS_REQUEST_CALL:
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //Permission granted
-                    startCallIntent();
-                } else {
-                    // Permission Denied
-                    Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
 }

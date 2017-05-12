@@ -24,14 +24,14 @@ import ogasimli.org.contacts.object.Contact;
  *
  * Created by Orkhan Gasimli on 10.05.2017.
  */
-//TODO: Merge fragments using abstract fragment class
+
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
 
     private ClickListener mClickListener;
 
     private ArrayList<Contact> mContactList;
 
-    private String mFragmentName;
+    private final String mFragmentName;
 
     public ContactListAdapter(String fragmentName) {
         this.mFragmentName = fragmentName;
