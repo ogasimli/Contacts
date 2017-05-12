@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@color/color_grey">
+    android:gravity="center">
 
     <ImageView
         android:layout_width="@dimen/splash_screen_icon_width"
