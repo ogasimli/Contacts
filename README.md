@@ -1,4 +1,4 @@
-# Movie Box
+# Contacts+
 A sample Android application for contact management.
 
 ## Features
